@@ -4,6 +4,8 @@ const nextConfig = {
     images: {
       unoptimized: true
     },
+    assetPrefix: '/site-nutricao/',
+    basePath: '/site-nutricao',
     trailingSlash: true,
     webpack: (config) => {
       config.resolve.fallback = { fs: false, net: false, tls: false };

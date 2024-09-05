@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Button } from '../components/Button';
 import { Container } from '../components/Container';
 import { Header } from '../components/Header';
@@ -14,7 +14,7 @@ export default function Home() {
 
   const handleStartQuiz = () => {
     if (selectedSubject) {
-      router.push(`/quiz/${selectedSubject}`);
+      router.push(`/site-nutricao/quiz/${selectedSubject}`);
     }
   };
 
@@ -40,7 +40,7 @@ export default function Home() {
         Iniciar Quiz (Prometo que não dói!)
       </Button>
       <div className="mt-4">
-        <Button onClick={() => router.push('/history')} variant="secondary">
+        <Button onClick={() => router.push('/site-nutricao/history')} variant="secondary">
           Ver Histórico de Quizzes
         </Button>
       </div>
