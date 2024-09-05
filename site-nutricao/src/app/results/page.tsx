@@ -20,7 +20,7 @@ export default function Results() {
   const [quizDuration, setQuizDuration] = useState(0);
 
   useEffect(() => {
-    if (searchParams) {
+    if (typeof window !== 'undefined' && searchParams) {
       const subjectId = searchParams.get('subjectId');
       const answersParam = searchParams.get('answers');
       const timeParam = searchParams.get('time');
