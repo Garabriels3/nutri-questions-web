@@ -20,22 +20,24 @@ export default function Results() {
   const [quizDuration, setQuizDuration] = useState(0);
 
   useEffect(() => {
-    const subjectId = searchParams.get('subjectId');
-    const answersParam = searchParams.get('answers');
-    const timeParam = searchParams.get('time');
+    if (searchParams) {
+      const subjectId = searchParams.get('subjectId');
+      const answersParam = searchParams.get('answers');
+      const timeParam = searchParams.get('time');
 
-    if (subjectId && answersParam && timeParam) {
-      const answers: QuizResult[] = JSON.parse(decodeURIComponent(answersParam));
-      const questions = mockQuestions.filter(q => q.subjectId === subjectId);
-      const correctAnswers = answers.filter((answer, index) => {
-        const question = questions[index];
-        const correctAnswer = question.answers.find(a => a.isCorrect);
-        return answer.selectedAnswer === correctAnswer?.text;
-      });
+      if (subjectId && answersParam && timeParam) {
+        const answers: QuizResult[] = JSON.parse(decodeURIComponent(answersParam));
+        const questions = mockQuestions.filter(q => q.subjectId === subjectId);
+        const correctAnswers = answers.filter((answer, index) => {
+          const question = questions[index];
+          const correctAnswer = question.answers.find(a => a.isCorrect);
+          return answer.selectedAnswer === correctAnswer?.text;
+        });
 
-      setScore(correctAnswers.length);
-      setTotalQuestions(questions.length);
-      setQuizDuration(parseInt(timeParam));
+        setScore(correctAnswers.length);
+        setTotalQuestions(questions.length);
+        setQuizDuration(parseInt(timeParam));
+      }
     }
   }, [searchParams]);
 
