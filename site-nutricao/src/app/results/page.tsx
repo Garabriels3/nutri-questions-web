@@ -66,8 +66,8 @@ export default function Results() {
         </div>
       </div>
       <div className="space-y-4">
-        <Button onClick={() => router.push('/site-nutricao')}>Voltar para o Início</Button>
-        <Button onClick={() => router.push('/site-nutricao/history')} variant="secondary">
+        <Button onClick={() => router.push('/')}>Voltar para o Início</Button>
+        <Button onClick={() => router.push('/history')} variant="secondary">
           Ver Histórico de Quizzes
         </Button>
       </div>

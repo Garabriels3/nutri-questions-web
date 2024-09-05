@@ -14,9 +14,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <head>
-        <link rel="stylesheet" href="/site-nutricao/globals.css" />
-      </head>
       <body>{children}</body>
     </html>
   )
