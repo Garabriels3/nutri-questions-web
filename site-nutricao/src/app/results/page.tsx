@@ -1,7 +1,7 @@
 'use client';
 
-import { useRouter, useSearchParams } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { Button } from '../../components/Button';
 import { Container } from '../../components/Container';
 import { Header } from '../../components/Header';
@@ -14,16 +14,16 @@ interface QuizResult {
 
 export default function Results() {
   const router = useRouter();
-  const searchParams = useSearchParams();
   const [score, setScore] = useState(0);
   const [totalQuestions, setTotalQuestions] = useState(0);
   const [quizDuration, setQuizDuration] = useState(0);
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && searchParams) {
-      const subjectId = searchParams.get('subjectId');
-      const answersParam = searchParams.get('answers');
-      const timeParam = searchParams.get('time');
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      const subjectId = urlParams.get('subjectId');
+      const answersParam = urlParams.get('answers');
+      const timeParam = urlParams.get('time');
 
       if (subjectId && answersParam && timeParam) {
         const answers: QuizResult[] = JSON.parse(decodeURIComponent(answersParam));
@@ -39,7 +39,7 @@ export default function Results() {
         setQuizDuration(parseInt(timeParam));
       }
     }
-  }, [searchParams]);
+  }, []);
 
   const formatDuration = (seconds: number) => {
     const minutes = Math.floor(seconds / 60);
