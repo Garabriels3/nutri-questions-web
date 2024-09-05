@@ -1,7 +1,7 @@
 'use client';
 
-import { useRouter, useSearchParams } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { Button } from '../../components/Button';
 import { Container } from '../../components/Container';
 import { Header } from '../../components/Header';
@@ -14,30 +14,32 @@ interface QuizResult {
 
 export default function Results() {
   const router = useRouter();
-  const searchParams = useSearchParams();
   const [score, setScore] = useState(0);
   const [totalQuestions, setTotalQuestions] = useState(0);
   const [quizDuration, setQuizDuration] = useState(0);
 
   useEffect(() => {
-    const subjectId = searchParams.get('subjectId');
-    const answersParam = searchParams.get('answers');
-    const timeParam = searchParams.get('time');
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      const subjectId = urlParams.get('subjectId');
+      const answersParam = urlParams.get('answers');
+      const timeParam = urlParams.get('time');
 
-    if (subjectId && answersParam && timeParam) {
-      const answers: QuizResult[] = JSON.parse(decodeURIComponent(answersParam));
-      const questions = mockQuestions.filter(q => q.subjectId === subjectId);
-      const correctAnswers = answers.filter((answer, index) => {
-        const question = questions[index];
-        const correctAnswer = question.answers.find(a => a.isCorrect);
-        return answer.selectedAnswer === correctAnswer?.text;
-      });
+      if (subjectId && answersParam && timeParam) {
+        const answers: QuizResult[] = JSON.parse(decodeURIComponent(answersParam));
+        const questions = mockQuestions.filter(q => q.subjectId === subjectId);
+        const correctAnswers = answers.filter((answer, index) => {
+          const question = questions[index];
+          const correctAnswer = question.answers.find(a => a.isCorrect);
+          return answer.selectedAnswer === correctAnswer?.text;
+        });
 
-      setScore(correctAnswers.length);
-      setTotalQuestions(questions.length);
-      setQuizDuration(parseInt(timeParam));
+        setScore(correctAnswers.length);
+        setTotalQuestions(questions.length);
+        setQuizDuration(parseInt(timeParam));
+      }
     }
-  }, [searchParams]);
+  }, []);
 
   const formatDuration = (seconds: number) => {
     const minutes = Math.floor(seconds / 60);
@@ -64,8 +66,8 @@ export default function Results() {
         </div>
       </div>
       <div className="space-y-4">
-        <Button onClick={() => router.push('/')}>Voltar para o Início</Button>
-        <Button onClick={() => router.push('/history')} variant="secondary">
+        <Button onClick={() => router.push('/site-nutricao')}>Voltar para o Início</Button>
+        <Button onClick={() => router.push('/site-nutricao/history')} variant="secondary">
           Ver Histórico de Quizzes
         </Button>
       </div>
