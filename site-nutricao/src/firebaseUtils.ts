@@ -1,6 +1,5 @@
 import { addDoc, collection, getDocs, orderBy, query, where } from 'firebase/firestore';
 import { db } from './firebaseConfig';
-import { mockQuestions } from './mockData';
 
 export interface Subject {
   id: string;
@@ -109,20 +108,32 @@ export async function getQuizHistory(userId: string): Promise<QuizHistoryItem[]>
 
 // Função para obter os detalhes de um quiz específico
 export async function getQuizDetails(quizId: string): Promise<QuizResult | null> {
-  // Simula a busca no Firestore
+  // Implementação temporária
+  console.log(`Buscando detalhes do quiz com ID: ${quizId}`);
+  
+  // Simula uma busca no banco de dados
   const mockQuizResult: QuizResult = {
     userId: 'user123',
-    quizData: mockQuestions.map(q => ({
-      ...q,
-      selectedAnswer: q.answers[Math.floor(Math.random() * q.answers.length)].text
-    })) as QuizQuestion[],
-    correctAnswersCount: 3,
-    totalQuestions: 5,
-    duration: 300,
+    quizData: [
+      {
+        id: 'q1',
+        subjectId: 'subject1',
+        questionText: 'Pergunta de exemplo',
+        answers: [
+          { text: 'Resposta 1', isCorrect: false },
+          { text: 'Resposta 2', isCorrect: true },
+        ],
+        selectedAnswer: 'Resposta 2'
+      }
+    ],
+    correctAnswersCount: 1,
+    totalQuestions: 1,
+    duration: 60,
     timestamp: new Date()
   };
 
-  return new Promise((resolve) => {
-    setTimeout(() => resolve(mockQuizResult), 500); // Simula um delay de rede
-  });
+  // Simula um delay de rede
+  await new Promise(resolve => setTimeout(resolve, 1000));
+
+  return mockQuizResult;
 }

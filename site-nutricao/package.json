@@ -6,17 +6,17 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "deploy": "next build && touch out/.nojekyll && gh-pages -d out -t true",
-    "export": "next export"
+    "export": "next build && next export",
+    "deploy": "npm run export && touch out/.nojekyll && gh-pages -d out -t true"
   },
   "dependencies": {
     "firebase": "^10.13.1",
-    "next": "14.2.8",
+    "next": "^14.2.8",
     "react": "^18",
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@types/firebase": "^3.2.1",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

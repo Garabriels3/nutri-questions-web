@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Fireworks, Trombone } from '../../../components/Animations';
 import { Button } from '../../../components/Button';
 import { Container } from '../../../components/Container';
@@ -21,7 +21,7 @@ export default function Quiz({ params }: { params: { subjectId: string } }) {
   const [showTrombone, setShowTrombone] = useState(false);
   const [fadeState, setFadeState] = useState<'in' | 'out'>('in');
   const [playSound, setPlaySound] = useState(false);
-  const [startTime, setStartTime] = useState<number>(Date.now());
+  const [startTime] = useState<number>(Date.now());
   const [isQuizFinished, setIsQuizFinished] = useState(false);
   const [selectedAnswers, setSelectedAnswers] = useState<Record<string, string>>({});
   const router = useRouter();

@@ -6,6 +6,12 @@ const nextConfig = {
     },
     basePath: '/site-nutricao',
     assetPrefix: '/site-nutricao/',
+    trailingSlash: true,
+    webpack: (config) => {
+      config.resolve.fallback = { fs: false, net: false, tls: false };
+      return config;
+    },
+    reactStrictMode: true,
 }
 
 module.exports = nextConfig
