@@ -14,8 +14,7 @@ export default function Home() {
 
   const handleStartQuiz = () => {
     if (selectedSubject) {
-      router.push(`/quiz/${selectedSubject}`);
-    }
+      router.push(`/site-nutricao/quiz/${selectedSubject}`);    }
   };
 
   const subjectOptions = [

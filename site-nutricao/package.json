@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "gh-pages -d out -t true",
-    "export": "next build && next export"
+    "deploy": "next build && touch out/.nojekyll && gh-pages -d out -t true",
+    "export": "next export"
   },
   "dependencies": {
     "firebase": "^10.13.1",
