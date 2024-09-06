@@ -9,12 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "firebase": "10.13.1"
+    "firebase": "10.13.1",
+    "react": "^18.3.1",
+    "next": "14.2.8",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "next": "14.2.8",
+    "@babel/core": "^7.25.2",
+    "@babel/runtime": "^7.25.6",
     "@types/node": "20.11.30",
     "@types/react": "18.2.67",
     "@types/react-dom": "18.2.22",
@@ -23,8 +25,5 @@
     "postcss": "8.4.35",
     "tailwindcss": "3.4.1",
     "typescript": "5.4.2"
-  },
-  "engines": {
-    "node": "18.17.0"
   }
 }
